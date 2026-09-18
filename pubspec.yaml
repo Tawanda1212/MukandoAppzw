@@ -1,36 +1,33 @@
-name: Build APK
+name: mukandozw
 
-on:
-  push:
-  workflow_dispatch:
+description: MukandoZW Green Offline
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+publish_to: 'none'
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+version: 1.0.0+1
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: zulu
-          java-version: '17'
+environment:
+  sdk: ">=3.13.0 <4.0.0"
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
+dependencies:
+  flutter:
+    sdk: flutter
 
-      - name: Get dependencies
-        run: flutter pub get
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.5.0
+  connectivity_plus: ^5.0.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.2
+  pdf: ^3.10.7
+  printing: ^5.11.1
+  path_provider: ^2.1.2
 
-      - name: Build APK
-        run: flutter build apk --release
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: mukandozw-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
