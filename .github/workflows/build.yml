@@ -26,6 +26,12 @@ jobs:
       - name: Create Flutter project
         run: flutter create . --project-name mukandoappzw
 
+      - name: Fix Dart SDK constraint
+        run: |
+          if ! grep -q "^environment:" pubspec.yaml; then
+            printf "\nenvironment:\n  sdk: '^3.13.0'\n" >> pubspec.yaml
+          fi
+
       - name: Get dependencies
         run: flutter pub get
 
